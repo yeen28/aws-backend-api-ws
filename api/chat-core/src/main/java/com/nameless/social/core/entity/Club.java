@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Club extends BaseTimeEntity {
 
 	private String icon;
 
+	@Setter
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "group_id")
 	private Group group;
@@ -32,6 +34,10 @@ public class Club extends BaseTimeEntity {
 
 	@OneToMany(mappedBy = "club")
 	private List<Quest> quest = new ArrayList<>();
+
+	public Club(String name) {
+		this.name = name;
+	}
 
 	public Club(long id, String name) {
 		this.id = id;

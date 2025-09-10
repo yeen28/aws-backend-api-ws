@@ -16,4 +16,5 @@ dependencies {
 	implementation project(':chat-core')
 
 	testImplementation 'com.h2database:h2'
+	testImplementation(testFixtures(project(':chat-core')))
 }

@@ -1,5 +1,5 @@
 # 1. 종속성 캐싱 및 준비
-FROM gradle:8.4-jdk17-alpine AS deps
+FROM gradle:8.4-jdk17 AS deps
 WORKDIR /app
 
 # Gradle 기본 설정 복사
@@ -14,7 +14,7 @@ COPY websocket/chat-websocket/build.gradle ./chat-websocket/
 RUN ./gradlew :chat-websocket:dependencies --no-daemon
 
 # 2. 전체 소스 복사 및 빌드
-FROM gradle:8.4-jdk17-alpine AS build
+FROM gradle:8.4-jdk17 AS build
 WORKDIR /app
 
 # deps 스테이지 복사

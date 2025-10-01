@@ -26,8 +26,8 @@ COPY api/. .
 # chat-api 모듈 빌드 (테스트 제외)
 RUN ./gradlew :chat-api:build -x test --no-daemon
 
-# 3. 최종 실행 이미지
-FROM eclipse-temurin:17-jdk-alpine
+# 3. 최종 실행 이미지 / 멀티 아키텍처가 필요하기 때문에 지원되는 이미지인 -jammy (Ubuntu 기반) 태그 사용
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
 COPY --from=build /app/chat-api/build/libs/*-SNAPSHOT.jar app.jar
